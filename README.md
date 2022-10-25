@@ -49,7 +49,7 @@ Let's uncompress the protonic-vault.zip file given for this challenge and execut
 
 ![application look](./application.png)
 
-The application asks a password. Obviously, we don't know the it. I tried to reverse engineer this executable but it was hard. So i decided to look at the other files. The resources/app.asar file seemed interesting. After some google research I deduced that this application was an electron application. We can found the official github of Asar here : https://github.com/electron/asar
+The application asks a password. Obviously, we don't know it. I tried to reverse engineer this executable but it was hard. So i decided to look at the other files. The resources/app.asar file seemed interesting. After some google research I deduced that this application was an electron application. We can found the official github of Asar here : https://github.com/electron/asar
 
 So let's decompile this app.asar file !
 
