@@ -45,11 +45,11 @@ protonic-vault
 ├── vk_swiftshader_icd.json
 └── vulkan-1.dll
 ```
-We uncompress the protonic-vault.zip file given for this challenge and execute protonic-vault.exe.
+Let's uncompress the protonic-vault.zip file given for this challenge and execute protonic-vault.exe.
 
 ![application look](./application.png)
 
-The application ask you a password. Obviously, we don't know the password. I tried to reverse engineer this executable but it was hard. So i decided to look at the other files. The resources/app.asar file seems interesting. After some google research I deduced that this application was an electron application. We can found the official github of Asar here : https://github.com/electron/asar
+The application asks a password. Obviously, we don't know the it. I tried to reverse engineer this executable but it was hard. So i decided to look at the other files. The resources/app.asar file seemed interesting. After some google research I deduced that this application was an electron application. We can found the official github of Asar here : https://github.com/electron/asar
 
 So let's decompile this app.asar file !
 
@@ -81,7 +81,7 @@ app.asar  app_extracted
 user@debian:~/protonic_vault/protonic-vault/resources$ ls app_extracted/
 img  index.html  node_modules  package.json  src  styles
 ```
-Nice ! We have the source code of our application. The src/ folder seems interesting.
+Nice ! Here is the extracted the source code of our application. The src/ folder seems interesting.
 ```
 src/
 ├── main.js
@@ -139,7 +139,7 @@ async function setupHandler() {
 setupHandler()
 ```
 I just removed the condition.
-We compile again our application patched.
+We compile again our patched application.
 ```
 user@debian:~/protonic_vault/protonic-vault/resources$ asar pack app_extracted/ new_app.asar
 ```
@@ -147,10 +147,10 @@ and we replace the old app.asar with our new file.
 
 ![replace old app](./replace_app.png)
 
-and we executed again the protonic-vault.exe, click on submit with any password and it works ! we are login and we can get the flag.
+Then we executed again the protonic-vault.exe, click on submit with any password and it works ! we are login and we can get the flag.
 
 ![flag](./flag_protonic_vault.png)
 
 Flag : RM{V8_byt3c0d3_1s_n0t_3n0ugh}
 
-Thanks to Root-Me and Elf for this challenge. Was very interesting because it was the first time I reverse engineer this type of application.
+Thanks to Root-Me and Elf for this challenge. I am very glad about it being interesting at all because it was the first time I reverse engineer this type of application.
